@@ -37,6 +37,16 @@ int modulo_alphabet(alpha alp,int password_length)
     return (alp.length % password_length);
 }
 
+void indentify_char_from_alphabet(char *text,alpha alp)
+{
+    printf("%s : \n",text);
+    for (unsigned int i = 0; i < strlen(text); i+=1)
+    {
+        printf("%c : %d\n",text[i],char_index_from_alphabet(alp,text[i]));
+    }
+    printf("\n");
+}
+
 void print_alphabet(alpha alp)
 {
     printf("Length : %d\n",alp.length);
