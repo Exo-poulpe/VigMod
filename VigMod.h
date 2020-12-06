@@ -12,6 +12,8 @@ int encode_char_from_alphabet(char orig_c,char new_c,alpha alp);
 int decode_char_from_alphabet(char orig_c,char pass_c,alpha alp);
 int sub_modulo_to_position(int position,char *password,alpha alp);
 int add_modulo_to_position(int position,char *password,alpha alp);
+void encode_file(char *file,char *output,char *password,alpha alp);
+void decode_file(char *file,char *output,char *password,alpha alp);
 char* vigenere_decode_from_alphabet(char* text,char* password,alpha alp);
 char* vigenere_encode_from_alphabet(char *text,char *password,alpha alp);
 

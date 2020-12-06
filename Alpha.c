@@ -8,7 +8,7 @@ alpha create_alphabet(char *myalpha)
     return alp;
 }
 
-int char_index_from_alphabet(alpha alp, char c)
+int alphabet_get_index_from_char(alpha alp, char c)
 {
     for (int i = 0; i < alp.length;i+=1)
     {
@@ -32,27 +32,27 @@ bool is_in_alphabet(alpha alp,char c)
     return false;
 }
 
-int modulo_alphabet(alpha alp,char *password)
+int alphabet_modulo(alpha alp,char *password)
 {
     int res = 0;
     for (unsigned int i=0;i < strlen(password);i+=1)
     {
-        res += char_index_from_alphabet(alp,password[i]);
+        res += alphabet_get_index_from_char(alp,password[i]);
     }
     return (res % alp.length);
 }
 
-void indentify_char_from_alphabet(char *text,alpha alp)
+void alphabet_identify_text_by_index(char *text,alpha alp)
 {
     printf("%s : \n",text);
     for (unsigned int i = 0; i < strlen(text); i+=1)
     {
-        printf("%c : %d\n",text[i],char_index_from_alphabet(alp,text[i]));
+        printf("%c : %d\n",text[i],alphabet_get_index_from_char(alp,text[i]));
     }
     printf("\n");
 }
 
-void print_alphabet(alpha alp)
+void alphabet_print(alpha alp)
 {
     printf("Length : %d\n",alp.length);
     for (int i = 0; i < alp.length; i+=1)

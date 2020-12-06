@@ -19,16 +19,20 @@ int main(int argc,const char **argv)
     bool encode = false;
     bool decode = false;
     char *text = NULL;
+    char *file = NULL;
+    char *output = "output.txt";
     char *pass = NULL;
-    alpha myalp = create_alphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZéèà !?1234567890");
+    alpha myalp = create_alphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!? ");
 
     struct argparse_option options[] = {
         OPT_HELP(),
         OPT_GROUP("Arguments"),
         OPT_BOOLEAN(0,"encode", &encode, "encode text", NULL, 0, 0),
         OPT_BOOLEAN(0,"decode", &decode, "decode text", NULL, 0, 0),
-        OPT_STRING('t', "text", &text, "test only", NULL, 0, 0),
-        OPT_STRING('p', "pass", &pass, "password", NULL, 0, 0),
+        OPT_STRING('t', "text", &text, "text to encode", NULL, 0, 0),
+        OPT_STRING('f', "file", &file, "filepath to use for encoding", NULL, 0, 0),
+        OPT_STRING('o', "output", &output, "output filename (default: output.txt)", NULL, 0, 0),
+        OPT_STRING('p', "pass", &pass, "password to use", NULL, 0, 0),
         OPT_END(),
     };
 
@@ -42,17 +46,26 @@ int main(int argc,const char **argv)
         char *result;
         if(encode)
         {
-            // indentify_char_from_alphabet(text,myalp);
             result = encode_vigmod(text,pass,myalp);
         } else if(decode)
         {
-            // indentify_char_from_alphabet(args[3],myalp);
             result = decode_vigmod(text,pass,myalp);
         }else{
         argparse_usage(&argparse);
         }
         printf("'%s'\n",result);
         free(result);
+    }else if((encode || decode) && file != NULL && pass != NULL)
+    {
+        if(encode)
+        {
+            encode_file(file,output,pass,myalp);
+        } else if(decode)
+        {
+            decode_file(file,output,pass,myalp);
+        }else{
+        argparse_usage(&argparse);
+        }
     }
     else if (argc == 0) {
         argparse_usage(&argparse);
