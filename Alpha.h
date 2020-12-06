@@ -17,7 +17,7 @@ alpha create_alphabet(char *myalpha);
 bool is_in_alphabet(alpha alp,char c);
 char alphabet_get_index(int index,alpha alp);
 int char_index_from_alphabet(alpha alp, char c);
-int modulo_alphabet(alpha alp,int password_length);
+int modulo_alphabet(alpha alp,char *password);
 void indentify_char_from_alphabet(char *text,alpha alp);
 
 #endif

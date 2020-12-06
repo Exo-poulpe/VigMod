@@ -32,9 +32,14 @@ bool is_in_alphabet(alpha alp,char c)
     return false;
 }
 
-int modulo_alphabet(alpha alp,int password_length)
+int modulo_alphabet(alpha alp,char *password)
 {
-    return (alp.length % password_length);
+    int res = 0;
+    for (unsigned int i=0;i < strlen(password);i+=1)
+    {
+        res += char_index_from_alphabet(alp,password[i]);
+    }
+    return (res % alp.length);
 }
 
 void indentify_char_from_alphabet(char *text,alpha alp)

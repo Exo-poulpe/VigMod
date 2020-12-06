@@ -73,7 +73,7 @@ char* vigenere_decode_from_alphabet(char* text,char* password,alpha alp)
 
 int add_modulo_to_position(int position,char *password,alpha alp)
 {
-    position += modulo_alphabet(alp,strlen(password));
+    position += modulo_alphabet(alp,password);
     if (position > alp.length)
     {
         position -= alp.length;
@@ -87,7 +87,7 @@ int add_modulo_to_position(int position,char *password,alpha alp)
 
 int sub_modulo_to_position(int position,char *password,alpha alp)
 {
-    position -= modulo_alphabet(alp,strlen(password));
+    position -= modulo_alphabet(alp,password);
     if (position > alp.length)
     {
         position -= alp.length;

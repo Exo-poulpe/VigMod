@@ -35,7 +35,7 @@ int main(int argc,const char **argv)
 
     struct argparse argparse;
     argparse_init(&argparse, options, usages, 0);
-    argparse_describe(&argparse, "\nA brief description of what the program does and how it works.", "\nAdditional description of the program after the description of the arguments.");
+    argparse_describe(&argparse, "\nThis is a program for Vigenere but with somes modification", "\nAuthor : Exo-poulpe 2020.12.06");
     argc = argparse_parse(&argparse, argc, argv);
     if ( (encode || decode) && text != NULL && pass != NULL)
     {
