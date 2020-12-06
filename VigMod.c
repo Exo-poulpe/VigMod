@@ -49,7 +49,13 @@ char* vigenere_encode_from_alphabet(char *text,char *password,alpha alp)
     {
         if(j > (int)strlen(password)){j=0;} // Reset J if is greater than password length
         int new_pos = encode_char_from_alphabet(text[i],password[j],alp);
-        new_pos = add_modulo_to_position(new_pos,password,alp);
+        if (i%2 == 0)
+        {
+            new_pos = add_modulo_to_position(new_pos,password,alp);
+        }else
+        {
+            new_pos = sub_modulo_to_position(new_pos,password,alp);
+        }        
         value[i] = alphabet_get_index(new_pos,alp);
     }
     return value;
@@ -63,7 +69,13 @@ char* vigenere_decode_from_alphabet(char* text,char* password,alpha alp)
     {
         if(j > (int)strlen(password)){j=0;} // Reset J if is greater than password length
         int new_pos = char_index_from_alphabet(alp,text[i]);
-        new_pos = sub_modulo_to_position(new_pos,password,alp);
+        if (i%2 == 0)
+        {
+            new_pos = sub_modulo_to_position(new_pos,password,alp);
+        }else
+        {
+            new_pos = add_modulo_to_position(new_pos,password,alp);
+        }
         new_pos = decode_char_from_alphabet(alphabet_get_index(new_pos,alp),password[j],alp);
         value[i] = alphabet_get_index(new_pos,alp);
     }
